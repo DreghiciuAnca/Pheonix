@@ -5,7 +5,7 @@ import { strict as assert } from 'assert';
 import contract from './Pheonix.json' assert {type: 'json'};
 import Sequalize from 'sequelize';
 
-const connection= new Sequalize('pheonix', 'root', 'Dreghiciuanca1', {
+const connection= new Sequalize('pheonix', 'root', '', {
     host: '127.0.0.1',
     port: '3306',
     dialect: 'mysql'
