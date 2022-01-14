@@ -5,7 +5,7 @@ import { strict as assert } from 'assert';
 import contract from './Pheonix.json' assert {type: 'json'};
 import Sequalize from 'sequelize';
 
-const connection= new Sequalize('pheonix', 'root', 'Dreghiciuanca1', {
+const connection= new Sequalize('pheonix', 'root', '', {
     host: '127.0.0.1',
     port: '3306',
     dialect: 'mysql'
@@ -61,15 +61,15 @@ const Payments = connection.define('Payments', {
     timestamps: false
 });
 
-myContract.events.allEvents(options).on('data', (e)=>{
+myContract.events.allEvents().on('data', (e)=>{
     console.log(e.event);
     if(e.event === AddStoreEventType){
-        // const store = Stores.build({
-        //     storesId: parseInt(e.returnValues.storeId),
-        //     name: e.returnValues.storeName,
-        //     description: e.returnValues.storeDescription
-        // })
-        // store.save();
+        const store = Stores.build({
+            storesId: parseInt(e.returnValues.storeId),
+            name: e.returnValues.storeName,
+            description: e.returnValues.storeDescription
+        })
+        store.save();
         console.log("Wallet: "+e.returnValues.wallet);
         console.log("StoreID: "+e.returnValues.storeId);
         console.log("StoreName: "+e.returnValues.storeName);
